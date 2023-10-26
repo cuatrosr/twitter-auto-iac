@@ -6,7 +6,7 @@ Este repositorio contiene la configuración de Terraform para desplegar y gestio
 
 ## Requisitos Previos
 
-Antes de comenzar, asegúrate de tener instalado lo siguiente:
+Anttestaatasegúrate de tener instalado lo siguiente:
 
 <div style="text-align: left">
     <p>

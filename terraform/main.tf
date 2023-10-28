@@ -33,7 +33,7 @@ module "ni" {
 }
 
 module "nsg" {
-  depends_on  = [module.module.rg]
+  depends_on  = [module.rg]
   source      = "./modules/azurerm_network_security_group"
   rg_name     = module.rg.rg_name
   rg_location = module.rg.rg_location

@@ -1,6 +1,6 @@
 variable "cr_name" {
   type        = string
-  default     = "cr-twitter-auto"
+  default     = "crTwitterAuto"
   description = "Specifies the name of the Container Registry."
 }
 

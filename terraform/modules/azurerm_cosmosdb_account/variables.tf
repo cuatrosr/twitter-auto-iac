@@ -10,11 +10,11 @@ variable "rg_name" {
 
 variable "of_type" {
   type        = string
-  default = "Standard"
+  default     = "Standard"
   description = "The name of the Mongo db type"
 }
 variable "db_kind" {
   type        = string
-  default = "MongoDB"
+  default     = "MongoDB"
   description = "The kind of the azure cosmodb account"
 }

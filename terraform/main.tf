@@ -55,7 +55,7 @@ module "cr" {
 
 module "mongo_db" {
   depends_on  = [module.rg]
-  source      = "./modules/azurerm_cosmodb_account"
+  source      = "./modules/azurerm_cosmosdb_account"
   rg_name     = module.rg.rg_name
   rg_location = module.rg.rg_location
 }

@@ -9,7 +9,7 @@ resource "azurerm_cosmosdb_account" "db" {
   offer_type          = var.of_type
   kind                = var.db_kind
 
-    consistency_policy {
+  consistency_policy {
     consistency_level       = "BoundedStaleness"
     max_interval_in_seconds = 300
     max_staleness_prefix    = 100000

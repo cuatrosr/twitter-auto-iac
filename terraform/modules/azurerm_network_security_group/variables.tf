@@ -20,7 +20,7 @@ variable "nsg_tags" {
   description = "Network Security Group tags"
 
   validation {
-    condition     = length(var.pubip_tags) > 0
+    condition     = length(var.nsg_tags) > 0
     error_message = "A mapping of tags to assign to the resource."
   }
 }

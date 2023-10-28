@@ -45,3 +45,9 @@ module "cr" {
   rg_name     = module.rg.rg_name
   rg_location = module.rg.rg_location
 }
+module "mongo_db" {
+  source      = "./modules/azurerm_cosmodb_account"
+  rg_name     = module.rg.rg_name
+  rg_location = module.rg.rg_location
+}
+

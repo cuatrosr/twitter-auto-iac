@@ -10,11 +10,31 @@ terraform {
       source  = "hashicorp/azurerm"
       version = "~>3.0"
     }
+    kubernetes = {
+      source = "hashicorp/kubernetes"
+    }
   }
+}
+
+data "azurerm_client_config" "current" {}
+
+data "azurerm_kubernetes_cluster" "cluster" {
+  depends_on = [
+    azurerm_kubernetes_cluster.aks,
+    azurerm_resource_group.rg
+  ]
+  name                = azurerm_kubernetes_cluster.aks.name
+  resource_group_name = azurerm_resource_group.rg.name
 }
 
 provider "azurerm" {
   features {}
 }
 
-data "azurerm_client_config" "current" {}
+provider "kubernetes" {
+  host = azurerm_kubernetes_cluster.cluster.kube_config.0.host
+
+  client_certificate     = base64decode(azurerm_kubernetes_cluster.cluster.kube_config.0.client_certificate)
+  client_key             = base64decode(azurerm_kubernetes_cluster.cluster.kube_config.0.client_key)
+  cluster_ca_certificate = base64decode(azurerm_kubernetes_cluster.cluster.kube_config.0.cluster_ca_certificate)
+}

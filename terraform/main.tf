@@ -45,3 +45,9 @@ module "cr" {
   rg_name     = module.rg.rg_name
   rg_location = module.rg.rg_location
 }
+
+module "aks" {
+  source      = "./modules/azurerm_kubernetes_cluster"
+  rg_name     = module.rg.rg_name
+  rg_location = module.rg.rg_location
+}

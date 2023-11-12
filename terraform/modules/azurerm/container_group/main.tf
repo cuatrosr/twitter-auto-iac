@@ -1,7 +1,7 @@
 resource "azurerm_container_group" "cg" {
-  name                = "mysonarcube"
+  name                = var.cg_name
   location            = var.rg_location
-  resource_group_name = var.cg_name
+  resource_group_name = var.rg_name
   ip_address_type     = "Public"
   dns_name_label      = "my-sonarqube"
   os_type             = "Linux"

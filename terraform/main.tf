@@ -80,6 +80,25 @@ module "hpa_service" {
   source = "./modules/kubernetes/service"
 }
 
-module "load_generator" {
-  source = "./modules/kubernetes/pod"
+module "sa" {
+  depends_on  = [module.rg]
+  source      = "./modules/azurerm/storage_account"
+  rg_name     = module.rg.rg_name
+  rg_location = module.rg.rg_location
+}
+
+module "ss" {
+  depends_on = [module.sa]
+  source     = "./modules/azurerm/storage_share"
+  sa_name    = module.sa.sa_name
+}
+
+module "cg" {
+  depends_on  = [module.rg, module.sa, module.ss]
+  source      = "./modules/azurerm/container_group"
+  rg_name     = module.rg.rg_name
+  rg_location = module.rg.rg_location
+  ss_name     = module.ss.ss_name
+  sa_name     = module.sa.sa_name
+  sa_key      = module.sa.sa_key
 }

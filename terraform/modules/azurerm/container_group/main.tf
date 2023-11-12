@@ -2,9 +2,9 @@ resource "azurerm_container_group" "cg" {
   name                = "mysonarcube"
   location            = var.rg_location
   resource_group_name = var.cg_name
-  ip_address_type     = "public"
+  ip_address_type     = "Public"
   dns_name_label      = "my-sonarqube"
-  os_type             = "linux"
+  os_type             = "Linux"
   restart_policy      = "OnFailure"
 
   exposed_port {

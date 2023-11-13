@@ -23,6 +23,13 @@ resource "azurerm_container_group" "cg" {
       protocol = "TCP"
     }
 
+    # Those variables would need to be setup somewhere
+    secure_environment_variables = {
+      SONAR_JDBC_URL      = var.db_jdbc_url
+      SONAR_JDBC_USERNAME = var.db_user
+      SONAR_JDBC_PASSWORD = var.db_password
+    }
+
     volume {
       name                 = "sonarqube-data"
       mount_path           = "/opt/sonarqube/data"

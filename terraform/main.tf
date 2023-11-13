@@ -67,19 +67,6 @@ module "aks" {
   rg_location = module.rg.rg_location
 }
 
-module "hpa_deployment" {
-  source = "./modules/kubernetes/deployment"
-}
-
-module "hpa" {
-  depends_on = [module.aks, module.rg]
-  source     = "./modules/kubernetes/horizontal_pod_autoscaler"
-}
-
-module "hpa_service" {
-  source = "./modules/kubernetes/service"
-}
-
 module "sa" {
   depends_on  = [module.rg]
   source      = "./modules/azurerm/storage_account"

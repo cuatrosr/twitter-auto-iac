@@ -89,3 +89,11 @@ module "cg" {
   sa_name     = module.sa.sa_name
   sa_key      = module.sa.sa_key
 }
+
+resource "helm_release" "kube-prometheus" {
+  name       = "kube-prometheus-stackr"
+  namespace  = "kube-public"
+  version    = "36.2.0"
+  repository = "https://prometheus-community.github.io/helm-charts"
+  chart      = "kube-prometheus-stack"
+}

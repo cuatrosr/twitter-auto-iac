@@ -53,13 +53,6 @@ module "cr" {
   rg_location = module.rg.rg_location
 }
 
-module "mongo_db" {
-  depends_on  = [module.rg]
-  source      = "./modules/azurerm/cosmosdb_account"
-  rg_name     = module.rg.rg_name
-  rg_location = module.rg.rg_location
-}
-
 module "aks" {
   depends_on  = [module.rg]
   source      = "./modules/azurerm/kubernetes_cluster"
@@ -90,10 +83,7 @@ module "cg" {
   sa_key      = module.sa.sa_key
 }
 
-resource "helm_release" "kube-prometheus" {
-  name       = "kube-prometheus-stackr"
-  namespace  = "kube-public"
-  version    = "36.2.0"
-  repository = "https://prometheus-community.github.io/helm-charts"
-  chart      = "kube-prometheus-stack"
+module "helm" {
+  depends_on = [module.aks]
+  source     = "./modules/helm/release"
 }

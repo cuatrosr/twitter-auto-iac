@@ -14,6 +14,10 @@ terraform {
       source  = "hashicorp/helm"
       version = "~>2.11.0"
     }
+    mongodbatlas = {
+      source  = "mongodb/mongodbatlas"
+      version = "1.13.1"
+    }
   }
 }
 
@@ -40,4 +44,10 @@ provider "helm" {
     client_key             = base64decode(data.azurerm_kubernetes_cluster.cluster.kube_config.0.client_key)
     cluster_ca_certificate = base64decode(data.azurerm_kubernetes_cluster.cluster.kube_config.0.cluster_ca_certificate)
   }
+}
+
+provider "mongodbatlas" {
+  public_key          = "hqiodmes"
+  private_key         = "950472e2-9cf5-4d4d-9758-7115abd7f013"
+  is_mongodbgov_cloud = true
 }

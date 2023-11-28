@@ -89,14 +89,14 @@ module "helm" {
 }
 
 resource "azurerm_dns_zone" "autotwitter_com" {
-	depends_on  = [module.rg]
+  depends_on  = [module.rg]
   name                = "autotwitter.com"
   resource_group_name = module.rg.rg_name
 }
 
 
 resource "azurerm_dns_a_record" "twitter_record" {
-	depends_on  = [module.rg]
+  depends_on  = [module.rg]
   name                = "www"
   zone_name           = azurerm_dns_zone.autotwitter_com.name
   resource_group_name = module.rg.rg_name

@@ -1,7 +1,11 @@
-resource "helm_release" "ingress" {
-  name       = "ingress"
-  repository = "https://kubernetes.github.io/ingress-nginx"
-  chart      = "ingress-nginx"
-  version    = "4.5.2"
+resource "helm_release" "kube-prometheus" {
+  name       = "kube-prometheus-stackr"
   namespace  = "kube-public"
+  version    = "36.2.0"
+  repository = "https://prometheus-community.github.io/helm-charts"
+  chart      = "kube-prometheus-stack"
+  set {
+    name  = "service.type"
+    value = "LoadBalancer"
+  }
 }
